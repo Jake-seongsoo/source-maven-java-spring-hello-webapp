@@ -14,7 +14,7 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh "mvn package -f pom.xml"
+        sh "mvn clean package -Dmaven.test.skip=true"
       }
     }
     stage('Test') {
