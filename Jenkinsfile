@@ -19,7 +19,7 @@ pipeline {
     }
     stage('Test') {
       steps {
-        echo "Test is done"
+        echo "mvn test"
       }
     }
     stage('Deploy') {
