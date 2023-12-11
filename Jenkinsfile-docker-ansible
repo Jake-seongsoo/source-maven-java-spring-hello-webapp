@@ -27,20 +27,20 @@ pipeline {
     stage('Build Docker Image') {
       agent any
       steps {
-        sh 'docker image build -t myhello .'
+        sh 'docker image build -t jenkins-ansible .'
       }
     }
     stage('Tag Docker Image') {
       agent any
       steps {
-        sh 'docker image tag myhello seongsoo/jenkins-ansible/myhello:$BUILD_NUMBER'
+        sh 'docker image tag myhello seongsoo/jenkins-ansible/jenkins-ansible:$BUILD_NUMBER'
       }
     }
     stage('Publish Docker Image') {
       agent any
       steps {
         withDockerRegistry(credentialsId: 'docker-hub-token', url: 'https://index.docker.io/v1/') {
-          sh 'docker image push seongsoo/jenkins-ansible/myhello:$BUILD_NUMBER'
+          sh 'docker image push seongsoo/jenkins-ansible/jenkins-ansible:$BUILD_NUMBER'
         }
       }
     }
